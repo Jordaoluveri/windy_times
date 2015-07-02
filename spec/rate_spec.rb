@@ -1,18 +1,17 @@
 require 'spec_helper'
+require 'json'
 
 describe Rate do
 
-	before :each do
-		@rate = Rate.new
-	end
+	subject { Rate.new }
 
 	describe "#new" do
+
 		it "returns the exchange rate" do
-			@rate.should be_an_instance_of Rate
+			expect(subject.rate['success']).to eql true
 		end
-		it "returns USD to BRL" do
-			@rate.should include "USDBRL"
+		it "return USD to BRL rate" do
+			expect(subject.rate['quotes']['USDBRL'].to_f.class).to eql Float
 		end
 	end
-
 end
