@@ -7,8 +7,8 @@ describe Wind do
 
 	describe "#new" do
 
-		it "returns the wind forecast" do
-			expect(subject.wind['time']).to eql Int
+		it "returns the actual windSpeed plus the next 48 speeds" do
+			expect(subject.wind.length).to eql 49
 		end
 	end
 end
