@@ -15,8 +15,5 @@ class WindsController < ActionController::Base
 			end
 		end
 	end
-
-	def render_chart
-	end
 end
 
