@@ -8,7 +8,24 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwGxJHDAx4f7jqo_atS743xpa2nEFzs34"></script>
     <meta charset="utf-8"/>
-    <title>Windy Times</title>
+    <style type="text/css">
+      html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBwGxJHDAx4f7jqo_atS743xpa2nEFzs34">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: { lat: -22.999555, lng: -43.348580},
+          zoom: 13,
+        };
+        var map = new google.maps.Map(document.getElementById('map-canvas'),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+     <title>Windy Times</title>
   </head>
 
   <body>
@@ -17,19 +34,19 @@
     </div>
 
     <h1>Escolha sua localização</h1>
-    <div id="location" style="width: 500px; height: 300px;"> </div>
-       <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: center: {lat: -22.999555, lng: -43.348580},
-          zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-            mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
+    <div id="map-canvas" style="width: 500px; height: 300px;"></div>
+     <script>
+     $('#map-canvas').locationpicker({
+        inputBinding: {
+        latitudeInput: $('#lat'),
+        longitudeInput: $('#lng'),
+        locationNameInput: $('#address')
+     });
     </script>
-      <button class="submit">click me</button>  
+    Adress: <input type="text" id="address" style="width: 200px"/>
+    Lat.: <input type="text" id="lat"/>
+    Long.: <input type="text" id="lng"/>
+    <button class="submit">click me</button>  
     <div id="container">
       <script>
       $(function render_chart() {
@@ -40,7 +57,7 @@
                   text: 'Wind Speed'
               },
               xAxis: {
-                  categories: <%=raw @hours %>  
+                  categories: <%= raw @hours %>  
               },
               yAxis: {
                   title: {
@@ -54,12 +71,6 @@
           });
       });
       </script>
-
     </div>
-
-    <footer id="footer">
-    
-    </footer>
-
   </body>
 </html>
