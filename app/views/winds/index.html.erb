@@ -14,22 +14,25 @@
 
   <body>
 
-    <h1>Escolha sua localização</h1>
+    <h1>Choose a place to nuke</h1>
     <div id="us3" style="width: 550px; height: 400px;"></div>
 
-    Adress: <input type="text" id="us3-address" style="width: 200px"/>
-    Lat.: <input type="text" id="us3-lat"/>
-    Long.: <input type="text" id="us3-lon"/>
-    <button class="submit">click me</button>
+  Adress: <input type="text" id="address" style="width: 200px"/>
+  <%= form_tag :wind_speed do%>
+    <%= text_field_tag :lat, params[:lat] %>
+    <%= text_field_tag :lng, params[:lng] %>
+    <%= submit_tag("Send coordinates")%>
+  <% end %>  
+    
+
 
     <script>$('#us3').locationpicker({
-        location: {latitude: -22.999555, longitude:-43.348580},
+        location: {latitude: <%= raw @lat %>, longitude: <%= raw @lng%>},
         radius: 300,
         inputBinding: {
-            latitudeInput: $('#us3-lat'),
-            longitudeInput: $('#us3-lon'),
-            radiusInput: $('#us3-radius'),
-            locationNameInput: $('#us3-address')
+            latitudeInput: $('#lat'),
+            longitudeInput: $('#lng'),
+            locationNameInput: $('#address')
         },
         enableAutocomplete: true,
     });</script>

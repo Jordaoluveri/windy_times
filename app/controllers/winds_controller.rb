@@ -1,7 +1,14 @@
 class WindsController < ActionController::Base
 	
+	
+
 	def index
-		@wind = Wind.new
+		p params
+		if params[:lat] && params[:lng]
+			@wind = Wind.new(params[:lat], params[:lng])
+		else
+			@wind = Wind.new
+		end
 		get_chart_data
 	end
 
