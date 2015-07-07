@@ -17,17 +17,15 @@
     <h1>Choose a place to nuke</h1>
     <div id="us3" style="width: 550px; height: 400px;"></div>
 
-  Adress: <input type="text" id="address" style="width: 200px"/>
+  Adress: <input type="text" id="address" style="width: 400px"/>
   <%= form_tag :wind_speed do%>
     <%= text_field_tag :lat, params[:lat] %>
     <%= text_field_tag :lng, params[:lng] %>
     <%= submit_tag("Send coordinates")%>
-  <% end %>  
+  <% end %>
     
-
-
     <script>$('#us3').locationpicker({
-        location: {latitude: <%= raw @lat %>, longitude: <%= raw @lng%>},
+        location: {latitude: -22.999570, longitude: -43.348561},
         radius: 300,
         inputBinding: {
             latitudeInput: $('#lat'),

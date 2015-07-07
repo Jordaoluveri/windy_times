@@ -1,0 +1,24 @@
+<div id="container"></div>
+    <script>
+      $(function render_chart(){
+          $('#container').highcharts({
+              chart: {
+              },
+              title: {
+                  text: 'Wind Speed'
+              },
+              xAxis: {
+                  categories: <%= raw @hours %>  
+              },
+              yAxis: {
+                  title: {
+                      text: 'Speed'
+                  }
+              },
+              series: [{
+                  name: 'Speed',
+                  data: <%= @speeds %>
+              }]
+          });
+      });
+    </script>
