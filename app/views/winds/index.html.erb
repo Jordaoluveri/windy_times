@@ -8,8 +8,7 @@
     <script src="javascripts/locationpicker.jquery.min.js"></script>
     
     <meta charset="utf-8"/>
-
-     <title>Windy Times</title>
+    <title>Windy Times</title>
   </head>
 
   <body>
@@ -17,13 +16,13 @@
     <h1>Choose a place to nuke</h1>
     <div id="us3" style="width: 550px; height: 400px;"></div>
 
-  Adress: <input type="text" id="address" style="width: 400px"/>
-  <%= form_tag :wind_speed do%>
-    <%= text_field_tag :lat, params[:lat] %>
-    <%= text_field_tag :lng, params[:lng] %>
-    <%= submit_tag("Send coordinates")%>
-  <% end %>
-    
+    Adress: <input type="text" id="address" style="width: 400px"/>
+    <%= form_tag :wind_speed do%>
+      <%= text_field_tag :lat, params[:lat] %>
+      <%= text_field_tag :lng, params[:lng] %>
+      <%= submit_tag("Send coordinates")%>
+    <% end %>
+      
     <script>$('#us3').locationpicker({
         location: {latitude: -22.999570, longitude: -43.348561},
         radius: 300,
@@ -33,33 +32,32 @@
             locationNameInput: $('#address')
         },
         enableAutocomplete: true,
-    });</script>
-
-    
+      });
+    </script>
 
     <div id="container">
       <script>
-      $(function render_chart() {
+        $(function render_chart() {
           $('#container').highcharts({
-              chart: {
-              },
+            chart: {
+            },
+            title: {
+              text: 'Wind Speed'
+            },
+            xAxis: {
+              categories: <%= raw @hours %>  
+            },
+            yAxis: {
               title: {
-                  text: 'Wind Speed'
-              },
-              xAxis: {
-                  categories: <%= raw @hours %>  
-              },
-              yAxis: {
-                  title: {
-                      text: 'Speed'
-                  }
-              },
-              series: [{
-                  name: 'Speed',
-                  data: <%= @speeds %>
-              }]
+                text: 'Speed'
+              }
+            },
+            series: [{
+              name: 'Speed',
+              data: <%= @speeds %>
+            }]
           });
-      });
+        });
       </script>
     </div>
   </body>

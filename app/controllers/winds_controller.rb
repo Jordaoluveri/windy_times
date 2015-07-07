@@ -1,6 +1,4 @@
 class WindsController < ActionController::Base
-	
-	
 
 	def index
 		p params
